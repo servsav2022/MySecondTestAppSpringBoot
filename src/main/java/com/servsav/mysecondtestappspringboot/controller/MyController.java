@@ -3,6 +3,7 @@ import com.servsav.mysecondtestappspringboot.exception.UnsupportedCodeException;
 import com.servsav.mysecondtestappspringboot.exception.ValidationFailedException;
 import com.servsav.mysecondtestappspringboot.model.*;
 import com.servsav.mysecondtestappspringboot.service.CheckUidService;
+import com.servsav.mysecondtestappspringboot.service.ModifyRequestService;
 import com.servsav.mysecondtestappspringboot.service.ModifyResponseService;
 import com.servsav.mysecondtestappspringboot.service.ValidationService;
 import com.servsav.mysecondtestappspringboot.util.DateTimeUtil;
@@ -24,13 +25,16 @@ public class MyController {
     private final ValidationService validationService;
     private final CheckUidService checkUidService;
     private final ModifyResponseService modifyResponseService;
+    private final ModifyRequestService modifyRequestService;
     @Autowired
     public MyController(ValidationService validationService,
                         CheckUidService checkUidService,
-                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService){
+                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService,
+                        @Qualifier("ModifySourceRequestService") ModifyRequestService modifyRequestService) {
         this.validationService = validationService;
         this.checkUidService = checkUidService;
         this.modifyResponseService = modifyResponseService;
+        this.modifyRequestService = modifyRequestService;
     }
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@Valid @RequestBody Request request,
@@ -74,6 +78,13 @@ public class MyController {
         }
         modifyResponseService.modify(response);
         log.info("Отдаваемый response: {}",response);
+        /*** Вот тут я беру время из респонза который отсылается в постман и посылаю его в реквест
+         * который будет послан во второе приложение
+         */
+        modifyRequestService.sendTime(response, request);
+        modifyRequestService.modify(request);
+        log.info("Отдаваемый request: {}",request);
+
         return  new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
     }
 }
