@@ -18,7 +18,6 @@ public class ModifySourceRequestService
     public void sendTime(Response response, Request request){
 
         request.setSystemTime(response.getSystemTime());
-
     }
     @Override
     public void modify(Request request){

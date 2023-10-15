@@ -15,6 +15,11 @@ import org.springframework.web.client.RestTemplate;
 public class ModifySystemNameRequestService
         implements ModifyRequestService {
     @Override
+    public void sendTime(Response response, Request request){
+
+        request.setSystemTime(response.getSystemTime());
+    }
+    @Override
     public void modify(Request request){
 
         request.setSystemName(Systems.SERVICE1);
@@ -28,10 +33,4 @@ public class ModifySystemNameRequestService
                 });
     }
 
-    @Override
-    public void sendTime(Response response, Request request){
-
-        request.setSystemTime(response.getSystemTime());
-
-    }
 }
