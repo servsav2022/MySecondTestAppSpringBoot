@@ -16,7 +16,7 @@ class QuarterlyBonusServiceImplTest {
             double salary = 100000.00;
 
             //when
-            double result = new AnnualBonusServiceImpl().calculateQuarterlyBonus(position, salary, bonus, workDays);
+            double result = new QuarterlyBonusServiceImpl().calculateQuarterlyBonus(position, salary, bonus, workDays);
 
             //then
             double expected = 195267.48971193415;

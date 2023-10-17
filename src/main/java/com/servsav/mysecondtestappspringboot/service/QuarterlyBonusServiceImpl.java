@@ -7,7 +7,6 @@ import java.time.Year;
 
 @Service
 public class QuarterlyBonusServiceImpl implements QuarterlyBonusService {
-
         public double calculateQuarterlyBonus(Positions position, double salary, double bonus, int workDays) {
         if (position.isManager()) {
             int year = Year.now().getValue(); // Получаем текущий год
