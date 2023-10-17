@@ -52,7 +52,7 @@ public class MyController {
         }
         modifyResponseService.modify(response);
         log.info("Отдаваемый response: {}",response);
-        /*** Вот тут я беру время из респонза который отсылается в постман и посылаю его в реквест
+        /** Вот тут я беру время из респонза который отсылается в постман и посылаю его в реквест
          * который будет послан во второй сервис
          */
         modifyRequestService.sendTime(response, request);
