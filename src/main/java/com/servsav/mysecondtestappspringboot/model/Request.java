@@ -13,36 +13,31 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Request {
-
-    @Size(max = 32)
-    @NotBlank (message = "Не заполнено поле uid")
     /**
      * Уникальный идентификатор сообщение
      */
-    private String uid;
-
     @Size(max = 32)
-    @NotBlank (message = "Не заполнено поле operationUid")
+    @NotBlank (message = "Не заполнено поле uid")
+    private String uid;
     /**
      * Уникальный идентификатор операции
      */
+    @Size(max = 32)
+    @NotBlank (message = "Не заполнено поле operationUid")
     private String operationUid;
     /**
      *Имя системы отправителя
      */
     private Systems systemName;
-
-    @NotBlank (message = "Не заполнено поле systemTime")
     /**
      * Время создания сообщения
      */
+    @NotBlank (message = "Не заполнено поле systemTime")
     private String systemTime;
-
     /**
      * Наименование ресурса
      */
     private String source;
-
     /**
      * Должность
      */
@@ -59,12 +54,11 @@ public class Request {
      * кол-во рабочих дней в году
      */
     private Integer workDays;
-
-    @Min(1)
-    @Max(100000)
     /**
      * Уникальный идентификатор коммуникации
      */
+    @Min(1)
+    @Max(100000)
     private int communicationId;
     /**
      * Уникальный идентификатор шаблона

@@ -19,7 +19,8 @@ public class ErrorHandling {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    public static ResponseEntity<Response> handleUnsupportedCodeException(Response response, UnsupportedCodeException e) {
+    public static ResponseEntity<Response> handleUnsupportedCodeException(Response response, UnsupportedCodeException e)
+    {
         response.setCode(Codes.FAILED);
         response.setErrorCode(ErrorCodes.UNSUPPORTED_EXCEPTION);
         response.setErrorMessage(ErrorMessages.UNSUPPORTED);
